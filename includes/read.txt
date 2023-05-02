@@ -1,0 +1,1 @@
+Itt a konfigurációs fájl lesz tárolva.
