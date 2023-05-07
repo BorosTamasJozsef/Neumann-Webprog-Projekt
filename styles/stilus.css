@@ -1,0 +1,12 @@
+/*Alapvető stílus oldal
+    Tervezett általános stílus tulajdonságok:
+    - Háttérszín:  #7FBFFF
+    - További színek (pl. menük háttere): #26394C
+    - Szövegszínek, stílus, linkek színe: fekete, Times New Roman, fehér menü világosabb szín
+    - 
+    -
+
+*/
+body {
+    background-color: #7FBFFF;
+}
