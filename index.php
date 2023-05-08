@@ -2,7 +2,7 @@
     include('./includes/config.inc.php');
     if (isset($_GET['oldal'])) { //címlaptól eltérés esetén
         $oldal = $_GET['oldal'];
-        if (isset($oldlak[$oldal]) && file_exists ("./templates/pages/{$oldalak[$oldal]['fajl']}.tpl.php") ) { //oldal keresése és vizsgálat, hogy az adott oldal létezik-e
+        if (isset($oldalak[$oldal]) && file_exists ("./templates/pages/{$oldalak[$oldal]['fajl']}.tpl.php") ) { //oldal keresése és vizsgálat, hogy az adott oldal létezik-e
             $keres = $oldalak[$oldal]; //oldalak tömb adott sora
         }
         else {
@@ -11,5 +11,5 @@
         }
     }
     else $keres = $oldalak['/']; //első beolvasás, vagy címlappal való egyezés
-    include('./tempaltes/index.tpl.php');
+    include('./templates/index.tpl.php');
 ?>
