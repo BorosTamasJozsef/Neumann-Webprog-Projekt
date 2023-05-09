@@ -14,22 +14,14 @@ $lablec = array (
     'ceg' => 'German & Boros Üzlet'
 );
 $oldalak = array (
-    '/' => array('fajl' => 'Fooldal', 'szoveg' =>'Főoldal'),
+    '/' => array('fajl' => 'fooldal', 'szoveg' =>'Főoldal'),
     'bemutatkozas' => array('fajl' => 'bemutatkozas', 'szoveg' => 'Bemutatkozás'),
     'kapcsolat' => array('fajl' => 'kapcsolat', 'szoveg' => 'Kapcsolat'),
-    'termekek' => array('fajl' =>'termekek', 'szoveg' => 'Termékek')
+    'termekek' => array('fajl' =>'termekek', 'szoveg' => 'Termékek'),
+    'regisztracio' => array('fajl' => 'regisztracio', 'szoveg' => 'Regisztráció'),
+    'belepes' =>array('fajl' => 'belepes', 'szoveg' => 'Belépés')
 );
 
 $hiba_oldal = array ('fajl' => '404', 'szoveg' => 'A keresett oldal nem található!');
-
-//Állandók meghatározása adatbázishoz:
-
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASSWORD', '');
-define('DATABASE_NAME', 'gremanandboros');
-
-//Az oldalon alkalmazott pénznem meghatározása:
-define('CURRENCY', 'HUF');
 
 ?>

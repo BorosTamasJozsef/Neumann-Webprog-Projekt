@@ -1,6 +1,11 @@
 <?php
 //Ezt a fájlt alkalmazzuk az adatbázishoz történő kapcsolódáshoz
-require "config.inc.php"; //amennyiben nem működik, tartalmazó mappa hozzáadása
+//lehet kell a require, de eddig errort dobott
+define('HOST', 'localhost');
+define('USER', 'root');
+define('PASSWORD', '');
+define('DATABASE_NAME', 'gremanandboros');
+define('CURRENCY', 'HUF');
 $servername = HOST;
 $username = USER;
 $password = PASSWORD;
