@@ -1,5 +1,6 @@
-<?php
-    if (isset($_GET["register"]))
+<?php 
+    if(isset($_GET["register"])) {
+
 
 ?>
 <!-- Az oldalon megjelenő űrlap:-->
@@ -16,7 +17,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading" style="color: #00FFE0">Regisztráció</div>
                     <div class="panel-body" style="background-color: #26394C !important;">
-                        <form id="regisztracios_f" onsubmit="return false">
+                        <form id="regisztracios_f">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="vezeteknev" style="color: #00FFE0">Vezetéknév</label>
@@ -69,3 +70,4 @@
         </div>
     </div>
 </div>
+<?php } ?>

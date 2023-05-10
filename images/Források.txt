@@ -58,9 +58,6 @@ https://www.nepstadioncsavar.hu/termek/popszegecshuzo-24-48/
 RagasztoR
 https://www.nepstadioncsavar.hu/termek/ragasztorud/
 
-PurhabP
-https://www.nepstadioncsavar.hu/termek/purhab-pisztoly/
-
 Csofogo
 https://www.nepstadioncsavar.hu/termek/csofogo-yato/
 
@@ -71,9 +68,6 @@ Falcfogo
 https://www.nepstadioncsavar.hu/termek/falc-fogo-neo/
 
 Kabelvago
-https://www.nepstadioncsavar.hu/termek/kabelvago-yato/
-
-Kuposfogo
 https://www.nepstadioncsavar.hu/termek/kabelvago-yato/
 
 Patentfogo

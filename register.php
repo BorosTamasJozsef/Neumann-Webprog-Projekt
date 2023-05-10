@@ -1,6 +1,6 @@
 <?php //Regisztrációs űrlap adatok, elsőtől utolsó mező: vezeteknev, keresztnev, jelszo & rejelszo, email, lakcim, iranyitoszam
     session_start();
-    include "./includes/db.php";
+    include "db.php";
     //Megvizsgáljuk az űrlapot
     if (isset($_POST["vezeteknev"])) {
         $vezeteknev = $_POST["vezeteknev"];
@@ -97,6 +97,10 @@
             ('felhasz_id, 'vezeteknev', 'keresztnev', 'jelszo', 'email', 'lakcim', 'iranyitoszam')
             VALUES (NULL, '$vezeteknev', '$keresztnev', '$jelszo', '$email', '$lakcim', '$isz')"; //A felhasználó azonosítónál NULL értéket adunk meg (nincs ilyen bevitt adat, ill. auto incr.)
             $run_query = mysqli_query($connection, $sql);
+            $_SESSION["uid"] = mysqli_insert_id($connection);
+            $_SESSION["name"] = $vezeteknev + " " + $keresztnev;
+            $ip_add = getenv("REMOTE_ADDR");
+            
             //Végül a regisztráció sikerességénen visszajelzése:
             if(mysqli_query($connection, $sql)) {
                 echo "
