@@ -1,1 +1,0 @@
-Itt fognak szerepelni azok az oldalsablonok, amelyek nem az index-hez vannak.

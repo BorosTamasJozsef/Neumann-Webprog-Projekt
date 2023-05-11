@@ -1,3 +1,0 @@
-A template mappa tárolja az oldalsablonokat. A "pages" mappában
-lesz minden olyan sablon, ami nem az index-hez tartozik. A "pages" mappán 
-kívül fog lenni az index.tpl.php fájl!
