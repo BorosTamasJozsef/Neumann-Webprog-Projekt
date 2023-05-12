@@ -73,6 +73,41 @@ if(!isset($_SESSION["uid"])){
 						<h2 style="text-align: center; color: cyan">E-mail Elérhetőség: </h2><h3 style="text-align: center; color: cyan">bluegaming2023@gmail.com</h3>
 						<br><br>
 						<h2 style="text-align: center; color: cyan">Üzenet Küldése:</h2><br><br>
+						<div class="col-md-12">
+						<div class="panel panel-primary">
+							<div class="panel-heading">Üzenet küldése</div>
+								<div class="panel-body" style="background: #4D4A47  !important;">
+					
+									<form id="message_form" onsubmit="return false">
+										<div class="row">
+										<div class="col-md-6">
+											<label for="f_name" style="color: blue">Vezetéknév</label>
+											<input type="text" id="messageL_name" name="messageL_name"class="form-control" placeholder="Adja meg a vezetéknevét">
+										</div>
+									<div class="col-md-6">
+										<label for="f_name" style="color: blue">Keresztnév</label>
+										<input type="text" id="messageF_name" name="messageF_name" class="form-control" placeholder="Adja meg a keresztnevét">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<label for="email" style="color: blue">E-mail cím</label>
+										<input type="text" id="message_email" name="message_email"class="form-control" placeholder="Adja meg az e-mail címét">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<br>
+										<p><label for="messageText" style="color: blue">Üzenet</label></p>
+										<textarea name="messageText" id="messageText" cols="250" rows="10"></textarea>
+									</div>
+								</div>
+								<p><br/></p>
+								<div class="row">
+									<div class="col-md-12">
+										<input style="width:100%;" value="Üzenet küldése" type="submit" name="messageButton"class="btn btn-primary btn-lg">
+									</div>
+								</div>
 						
 					
 				</div>

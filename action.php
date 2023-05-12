@@ -161,32 +161,7 @@ if(isset($_POST["get_selected_Category"]) || isset($_POST["selectDiscount"]) || 
 			}
 		}
 		}
-		//Hogyha a felhasználó NINCS bejelentkezve (egyedi IP): -----------VALSZEG TÖRLÉSRE KERÜL
-		else{
-			$sql = "SELECT id FROM cart WHERE ip_add = '$ip_add' AND p_id = '$p_id' AND users_id < -1";
-			$query = mysqli_query($con,$sql);
-			if (mysqli_num_rows($query) > 0) {
-				echo "
-					<div class='alert alert-warning'>
-							<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-							<b>Termék hozzáadásához jelentkezzen be vagy hozzon létre egy fiókot!</b>
-					</div>";
-					exit();
-			}
-			$sql = "INSERT INTO `cart`
-			(`p_id`, `ip_add`, `users_id`, `qty`) 
-			VALUES ('$p_id','$ip_add','-1','1')";
-			if (mysqli_query($con,$sql)) {
-				echo "
-					<div class='alert alert-success'>
-						<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-						<b>Termék hozzáadásához jelentkezzen be vagy hozzon létre egy fiókot!</b>
-					</div>
-				";
-				exit();
-			}
-			
-		}
+		
 		
 		
 		
@@ -198,12 +173,6 @@ if (isset($_POST["count_item"])) {
 	//Amikor a felhasználó be van jelentkezve, akkor a felhasználói ID alkalmazásával fogjuk megszámolni a kosár elemeinek számát:
 	if (isset($_SESSION["uid"])) {
 		$sql = "SELECT COUNT(*) AS count_item FROM cart WHERE users_id = $_SESSION[uid]";
-	}else{
-		/*
-		Amikor a felhasználó nincsen bejelentkezve, akkor a kosár elemeinek számát a felhasználók egyedi ip címének felhasználásával
-		fogjuk megállapítani:
-		*/
-		$sql = "SELECT COUNT(*) AS count_item FROM cart WHERE ip_add = '$ip_add' AND users_id < 0";
 	}
 	
 	$query = mysqli_query($con,$sql);
@@ -213,48 +182,22 @@ if (isset($_POST["count_item"])) {
 }
 //A VÉGE a felhasználói kosár elemeinek megszámolásának
 
-//Kosár elemeinek lekérése a legördülő menübe:
+//Kosár elemeinek lekérése:
 if (isset($_POST["Common"])) {
 
 	if (isset($_SESSION["uid"])) {
-		//Hogyha a felhasználó BEJELENTKEZVE VAN, akkor az alábbi lekérdezés fut le:
+		
 		$sql = "SELECT a.product_id,a.product_title,a.product_price,a.product_image,b.id,b.qty FROM products a,cart b WHERE a.product_id=b.p_id AND b.users_id='$_SESSION[uid]'";
 	}else{
-		//Hogyha a felhasználó NINCSEN bejelentkezve, akkor az alábbi lekérdezés fut le:
+		
 		$sql = "SELECT a.product_id,a.product_title,a.product_price,a.product_image,b.id,b.qty FROM products a,cart b WHERE a.product_id=b.p_id AND b.ip_add='$ip_add' AND b.users_id < 0";
 	}
 	$query = mysqli_query($con,$sql);
-	if (isset($_POST["getCartItem"])) {
-		//Kosár megjelenítése legördülő menüben:
-		if (mysqli_num_rows($query) > 0) {
-			$n=0;
-			while ($row=mysqli_fetch_array($query)) {
-				$n++;
-				$product_id = $row["product_id"];
-				$product_title = $row["product_title"];
-				$product_price = $row["product_price"];
-				$product_image = $row["product_image"];
-				$cart_item_id = $row["id"];
-				$qty = $row["qty"];
-				echo '
-					<div class="row">
-						<div class="col-md-3">'.$n.'</div>
-						<div class="col-md-3"><img class="img-responsive" src="product_images/'.$product_image.'" /></div>
-						<div class="col-md-3">'.$product_title.'</div>
-						<div class="col-md-3">'.CURRENCY.''.$product_price.'</div>
-					</div><br>';
-				
-			}
-			?>
-				<a style="float:right;" href="cart.php" class="btn btn-warning">Szerkesztés&nbsp;&nbsp;<span class="glyphicon glyphicon-edit"></span></a>
-			<?php
-			exit();
-		}
-	}
+	
 	if (isset($_POST["checkOutDetails"])) {
 		if (mysqli_num_rows($query) > 0) {
 			
-			//Felhasználói kosár megjelenítése a "Tovább a fizetéshez" gombbal (utóbbi, hogyha a felhasználó nincsen bejelentkezve):
+			//Felhasználói kosár megjelenítése a "Tovább a fizetéshez" gombbal:
 			//-------------VALSZEG SZERKESZTÉS
 			echo "<form method='post' action='login_form.php'>";
 				$n=0;
@@ -293,13 +236,13 @@ if (isset($_POST["Common"])) {
 				
 					
 				if(isset($_SESSION["uid"])){
-					//Fizetés: -------------VALSZEG TÖRLÉS, HELYETTE PAYPAL
+					//Fizetés:
 					echo '
 						</form>
-						<form action="payforproduct.php" method="post">
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="business" value="shoppingcart@bestpricepenguin.com">
-							<input type="hidden" name="upload" value="1">';
+							<input type="hidden" name="business" value="shoppingcart@bluegaming.com">
+							<input type="hidden" name="upload" value="1">'; //Paypal meghívása fizetéskor (külön fizetési oldal helyett). A fizetés nem lehetséges természetesen.
 							  
 							$x=0;
 							$sql = "SELECT a.product_id,a.product_title,a.product_price,a.product_image,b.id,b.qty FROM products a,cart b WHERE a.product_id=b.p_id AND b.users_id='$_SESSION[uid]'";
@@ -314,12 +257,7 @@ if (isset($_POST["Common"])) {
 								}
 							  
 							echo   
-								'<input type="hidden" name="return" value="http://localhost/BestPricePenguin/payment_success.php">
-					                <input type="hidden" name="notify_url" value="http://localhost/BestPricePenguin/payment_success.php">
-									<input type="hidden" name="cancel_return" value="http://localhost/BestPricePenguin/profile.php">
-									<input type="hidden" name="currency_code" value="HUF">
-									<input type="hidden" name="custom" value="'.$_SESSION["uid"].'">
-									<br>
+								'
 									<input style="float:right;margin-right:80px;" type="submit" name="submit"
 									value="Tovább a fizetéshez" class="btn btn-warning btn-lg">
 									

@@ -46,7 +46,7 @@ if(!isset($_SESSION["uid"])){
 			<ul class="nav navbar-nav">
 				<li><a href="indexLogged.php"><span class="glyphicon glyphicon-home"></span>Főoldal</a></li>
 				<li><a href="profile.php"><span class="glyphicon glyphicon-modal-window"></span>Termékek</a></li>
-				<li><a href="contact.php"><span class="glyphicon glyphicon-envelope"></span>Kapcsolat</a></li>
+				<li><a href="contactLogged.php"><span class="glyphicon glyphicon-envelope"></span>Kapcsolat</a></li>
 				
 			</ul>
 		

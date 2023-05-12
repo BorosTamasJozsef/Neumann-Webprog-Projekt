@@ -208,7 +208,6 @@ $(document).ready(function(){
 		})
 	}
 
-	//Kosár tétel lekérése az adatbázisból a legördülő menübe
 
 	/*
 		Amikor a felhasználó módosítja a mennyiséget, azonnal frissítjük a teljes összeget a keyup funkció használatával
@@ -258,7 +257,7 @@ $(document).ready(function(){
 		})
 	})
 	/*
-		Amikor a felhasználó "rákattint az .update osztályra", akkor annak a sornak a termék azonosítóját
+		Amikor a felhasználó rákattint az .update osztályra, akkor annak a sornak a termék azonosítóját
 		elküldjük az action.php-nak, hogy egy termékmennyiség (qty) frissítést hajtson végre.
 	*/
 	$("body").delegate(".update","click",function(event){
@@ -284,8 +283,7 @@ $(document).ready(function(){
 		Először is, engedélyezi a php isset($_POST["Common"])-ot az action.php-n és azon belül
 		két isset függvényt is, amelyek az isset($_POST["getCartItem"]) és az isset($_POST["checkOutDetails"]).
 		
-		- getCartItem: a kosárba helyezett termékeket jeleníti meg a legördülő menüben.
-		- CheckOutDetails: a cart.php oldalon jeleníti meg a kosárba helyezett termékeket.
+		
 	*/
 	function checkOutDetails(){
 	 $('.overlay').show();
