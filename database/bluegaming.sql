@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Ápr 29. 22:20
--- Kiszolgáló verziója: 10.4.21-MariaDB
--- PHP verzió: 8.0.10
+-- Létrehozás ideje: 2023. Máj 12. 16:53
+-- Kiszolgáló verziója: 10.4.27-MariaDB
+-- PHP verzió: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `admin` (
   `name_admin` varchar(50) NOT NULL,
   `email_admin` varchar(100) NOT NULL,
   `password_admin` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `admin`
@@ -57,7 +57,7 @@ CREATE TABLE `cart` (
   `ip_add` varchar(250) NOT NULL,
   `users_id` int(10) DEFAULT NULL,
   `qty` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,7 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `cat_id` int(10) NOT NULL,
   `cat_title` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `categories`
@@ -99,7 +99,7 @@ DROP TABLE IF EXISTS `discounts`;
 CREATE TABLE `discounts` (
   `discount_id` int(10) NOT NULL,
   `discount_title` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `discounts`
@@ -115,6 +115,21 @@ INSERT INTO `discounts` (`discount_id`, `discount_title`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE `messages` (
+  `message_id` int(10) NOT NULL,
+  `message_senderF` varchar(45) NOT NULL,
+  `message_senderL` varchar(45) NOT NULL,
+  `message_senderMail` varchar(100) NOT NULL,
+  `message_text` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `orders`
 --
 
@@ -126,7 +141,7 @@ CREATE TABLE `orders` (
   `qty` int(10) NOT NULL,
   `trx_id` varchar(255) NOT NULL,
   `p_status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -145,7 +160,7 @@ CREATE TABLE `products` (
   `product_desc` text NOT NULL,
   `product_image` text NOT NULL,
   `product_keywords` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `products`
@@ -155,7 +170,7 @@ INSERT INTO `products` (`product_id`, `product_cat`, `product_discount`, `produc
 (1, 4, 2, 'Elder Scrolls V: Skyrim - Special Edition', 6700, 30, 'Az Elder Scrolls V: Skyrim játék egy újabb fejezetet jelent a híres Elder Scrolls sagában, amelyet a Bethesda Game Studios fejlesztett ki. Nyitott világélmény, izgalmas történet a régi időkről, amelyek legendákat mesélnek el az északi országokban bátran harcoló dicső harcosokról, és olyan küldetésekről, amelyek még a legjobb RPG-játékosokat is kihívásokkal töltik el és szórakoztatják – ebben a címben minden benne van. Bár több éve megjelent, a játék jól megöregedett, és játékosok ezreinek nyújtott szórakozást világszerte, ezért vásárolja meg a The Elder Scrolls V: Skyrim Special Edition Steam kulcsot, és csatlakozzon a nagy utazáshoz!', 'ESSKYRIMSPECIAL.jpg', 'skyrim, ES'),
 (2, 8, 2, 'Alone in the Dark - Anthology', 2560, 40, 'Alone in the Dark - Anthology', 'AloneintheDANTHOLOGY.jpg', 'alone, dark, anthology'),
 (3, 1, 2, 'Amnesia Collection', 3000, 17, 'Amnesia Collection', 'AmnesiaColl.jpeg', 'amnesia, collection'),
-(4, 1, 1, 'Amnesia: A Machine for Pigs', 1500, 20, 'Amnesia: A Machine for Pigs', 'AmnesiaPIGS.jpeg', 'amnesia, pigs, machine, for'),
+(4, 1, 1, 'Amnesia: A Machine for Pigs', 1500, 20, 'Amnesia: A Machine for Pigs', '1683835479_AmnesiaPIGS.jpeg', 'amnesia, pigs, machine, for'),
 (5, 1, 3, 'Amnesia: Rebirth', 1400, 50, 'Amnesia: Rebirth', 'AmnesiaRebirth.jpeg', 'amnesia, rebirth'),
 (6, 1, 2, 'Amnesia: The Dark Descent', 900, 15, 'Amnesia: The Dark Descent', 'AmnesiaTDD.jpeg', 'amnesia, the, dark, descent'),
 (7, 2, 2, 'Assassin\'s Creed III', 2000, 30, 'Az év 1775, és az amerikai gyarmatok a szabadságuk küszöbén állnak. Sok fiatal csatlakozik az Amerikai Egyesült Államok létrehozásának forradalmához, de egy ember számára az utazás más fordulatot vesz. Connor, az indián és brit származású harcos harcolni kezd klánjáért, és a forradalom régóta szükséges szikrája lesz.\n\n\nHa Connort játszod, nemcsak a történelem szemtanúja leszel, hanem a város utcáin vagy a vadon mélyén vívod csatáidat.', 'ASS3.jpeg', 'assassin, assassin\'s, creed, 3, III'),
@@ -356,14 +371,14 @@ INSERT INTO `products` (`product_id`, `product_cat`, `product_discount`, `produc
 DROP TABLE IF EXISTS `user_info`;
 CREATE TABLE `user_info` (
   `user_id` int(10) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `mobile` varchar(11) NOT NULL,
-  `address1` varchar(300) NOT NULL,
+  `address1` varchar(100) NOT NULL,
   `address2` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `user_info`
@@ -371,7 +386,6 @@ CREATE TABLE `user_info` (
 
 INSERT INTO `user_info` (`user_id`, `first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES
 (6, 'Boros', 'Tamas', 'tamasboros664@gmail.com', '1afc1a0f1ab9feec79a8461c92648c71', '0620416105', 'Simontornya, Ady Endre u. 14/c', '7081');
-
 
 --
 -- Indexek a kiírt táblákhoz
@@ -402,6 +416,12 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `discounts`
   ADD PRIMARY KEY (`discount_id`);
+
+--
+-- A tábla indexei `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`message_id`);
 
 --
 -- A tábla indexei `orders`
@@ -439,7 +459,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT a táblához `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT a táblához `categories`
@@ -463,13 +483,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT a táblához `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
+  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
 
 --
 -- AUTO_INCREMENT a táblához `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Megkötések a kiírt táblákhoz

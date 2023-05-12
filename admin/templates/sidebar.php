@@ -48,6 +48,12 @@
               Felhasználók
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link <?php echo ($page == 'messages.php') ? 'active' : ''; ?>" href="messages.php">
+              <span data-feather="file"></span>
+              Beérkező Üzenetek
+            </a>
+          </li>
         </ul>
 
        
